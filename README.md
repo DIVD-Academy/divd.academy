@@ -1,1 +1,1 @@
-# divd.academy
+We zijn spoedig weer bereikbaar.
