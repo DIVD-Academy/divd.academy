@@ -1,1 +1,1 @@
-We zijn spoedig weer bereikbaar.
+Dit is de website van DIVD.Academy.
