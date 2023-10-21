@@ -1,0 +1,11 @@
+# Found a bug? Report it here:
+Contact: https://form.jotform.com/232933916270054
+
+Preferred-Languages: en, nl, de, fr
+Expires: 2025-01-01T00:01:00.000Z
+
+# Vulnerability Disclosure Policy
+Policy: https://divd.academy/code/cvd
+
+# DIVD Academy is a non-profit organisation run by volunteers. If you want to help out as a volunteer, please free to reach out to us:
+Hiring: https://divd.academy/join/
