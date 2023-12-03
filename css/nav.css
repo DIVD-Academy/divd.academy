@@ -1,6 +1,8 @@
 /* HEAD NAVBAR / MOBILE RESPONSIVE */
 header{
     background-color: rgba(22, 22, 21, 1);
+
+
 }
 .nav-bar {
     display: flex;

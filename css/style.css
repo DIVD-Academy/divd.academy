@@ -122,7 +122,7 @@ position: absolute;
 left: 0;
 }
 
-.card-black{
+.card-black {
     background-color: #161615;
     color: #ffffff;
     border-radius: 0;
@@ -131,8 +131,8 @@ left: 0;
     border-radius: 3px;
 }
 
-.yellow-btn{
-    * text-decoration: none;
+.yellow-btn {
+    text-decoration: none;
     color: #000000;
     background-color: #FDF941;
     padding: 10px 35px;
@@ -140,7 +140,7 @@ left: 0;
     display: block;
     align-items: center;
     text-align: center;
-    border: solid #bfbd21 1px; *
+    border: solid #bfbd21 1px; 
 }
 
 
@@ -182,19 +182,14 @@ left: 0;
 }
 
 
-
-
-/* Bovenste sectie met geletekst enzo */
-
 .section-banner {
     background-color: rgba(22, 22, 21, 1);
     color: white;
     padding: 60px 0;
     margin-bottom: 30px;
     margin-top: -16px;
-    /* width: 100%; */
-    /* margin-right: -50px ; */
-    text-align: left; /* Tekst links uitlijnen binnen de sectie */
+    text-align: left; 
+
 }
 .section-banner .div-banner{
     max-width: 800px;
@@ -212,9 +207,18 @@ left: 0;
     line-height: 1.4;
 }
 
-@media (min-width: 1200px) {
-    .section-banner .container {
-    
-    }
-}
+.grey-out {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  .grey-out:hover {
+    filter: grayscale(0%);
+  }
 
+.stock-img {
+    max-width: 100%;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+}
