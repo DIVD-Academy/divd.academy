@@ -1,11 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0;url=https://the.divd.academy/">
-  <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIVD Academy: Language Selector /  Kies uw taal</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f7fb;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #111827;
+            padding-top: 72px;
+        }
+        .language-selector {
+            width: min(100%, 440px);
+            padding: 32px 28px;
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: 0 28px 90px rgba(15, 23, 42, 0.12);
+            text-align: center;
+        }
+        .language-selector h1 {
+            margin: 0 0 24px;
+            font-size: 1.75rem;
+            line-height: 1.25;
+        }
+        .language-options {
+            display: grid;
+            gap: 14px;
+        }
+        .language-option {
+            display: block;
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 1px solid #d1d5db;
+            background: #f8fafc;
+            color: #111827;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .language-option:hover,
+        .language-option:focus-visible {
+            background: #eef2ff;
+            transform: translateY(-1px);
+        }
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: #000;
+            padding: 12px 0;
+            z-index: 9999;
+        }
+        .top-bar-inner {
+            width: min(100%, 1180px);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+        }
+        .top-bar img {
+            max-height: 40px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-  <p>If you are not redirected automatically, <a href="https://the.divd.academy/">click here</a>.</p>
+    <header class="top-bar">
+        <div class="top-bar-inner">
+            <a href="/">
+                <img src="https://divd.academy/img/divd-academy.png" alt="DIVD Academy logo">
+            </a>
+        </div>
+    </header>
+    <main class="language-selector">
+        <h1>Select your preferred language</h1>
+        <div class="language-options">
+            <a class="language-option" href="https://the.divd.academy/">English</a>
+            <a class="language-option" href="https://nl.divd.academy/">Nederlands</a>
+        </div>
+    </main>
 </body>
 </html>
