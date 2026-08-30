@@ -19,11 +19,13 @@
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform var(--motion-duration-fast) var(--motion-ease),
-    background var(--motion-duration-fast) var(--motion-ease);
+    background var(--motion-duration-fast) var(--motion-ease),
+    box-shadow var(--motion-duration-fast) var(--motion-ease);
 }
 
 .button:hover {
   transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(245, 231, 22, 0.16);
 }
 
 .button--primary {
@@ -51,14 +53,30 @@
 
 /* Cards */
 .card {
-  background: var(--color-surface-1);
+  background: linear-gradient(180deg, rgba(22, 22, 22, 0.98), rgba(15, 15, 15, 0.96));
   border: 1px solid var(--color-surface-border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .card h3 {
   margin-bottom: var(--space-xs);
+}
+
+.card--feature {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(22, 22, 22, 0.98), rgba(17, 17, 17, 0.98));
+}
+
+.card--feature::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), transparent 70%);
 }
 
 .card--accent {
@@ -88,8 +106,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(8, 8, 8, 0.92);
-  backdrop-filter: blur(6px);
+  background: rgba(8, 8, 8, 0.9);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-surface-border);
 }
 
@@ -138,6 +156,20 @@
 .site-nav__list a:hover,
 .site-nav__list a[aria-current="page"] {
   color: var(--color-accent);
+}
+
+.hero-section {
+  position: relative;
+  padding-top: var(--space-3xl);
+}
+
+.hero-layout {
+  align-items: center;
+  gap: clamp(var(--space-lg), 3vw, var(--space-3xl));
+}
+
+.hero-layout > * {
+  min-width: 0;
 }
 
 /* Language switch: compact two-pill control (Charity-style pattern). */
@@ -308,16 +340,31 @@
 
 /* Stat callout card (Charity-style pillar callout). */
 .stat-card {
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-surface-border);
+  background: linear-gradient(180deg, rgba(24, 24, 24, 1), rgba(12, 12, 12, 1));
+  border: 1px solid rgba(245, 231, 22, 0.24);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(245, 231, 22, 0.08), rgba(17, 17, 17, 1));
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), transparent 65%);
 }
 
 .stat-card__row + .stat-card__row {
   margin-top: var(--space-sm);
   padding-top: var(--space-sm);
-  border-top: 1px solid var(--color-surface-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .stat-card__value {
