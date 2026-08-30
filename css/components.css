@@ -1,0 +1,332 @@
+/*
+  DIVD Academy reusable, accessible UI components (issue #16).
+  Card shapes echo the logo's black pill and the DIVD-family rounded language
+  observed on DIVD.Works / DIVD.Charity, without copying their layouts.
+*/
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: var(--touch-target-min);
+  padding: var(--space-xs) var(--space-lg);
+  border-radius: var(--radius-pill);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body);
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--motion-duration-fast) var(--motion-ease),
+    background var(--motion-duration-fast) var(--motion-ease);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+.button--primary:hover,
+.button--primary:focus-visible {
+  background: var(--color-text-link-hover);
+  color: var(--color-text-on-accent);
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-surface-border);
+}
+
+.button--secondary:hover,
+.button--secondary:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Cards */
+.card {
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.card h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.card--accent {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+.card--accent h3,
+.card--accent p {
+  color: var(--color-text-on-accent);
+}
+
+/* Badge / pill (echoes the logo's pill shape) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3xs) var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Site header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-surface-border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: var(--header-height);
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.site-header__logo img {
+  height: 2.25rem;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav__list a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+}
+
+.site-nav__list a:hover,
+.site-nav__list a[aria-current="page"] {
+  color: var(--color-accent);
+}
+
+/* Language switch: compact two-pill control (Charity-style pattern). */
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+}
+
+.lang-switch a {
+  padding: var(--space-3xs) var(--space-sm);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.lang-switch a[aria-current="true"] {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+/* Mobile nav toggle (progressive enhancement; nav remains reachable without JS
+   because it is not hidden when JavaScript is disabled — see .site-nav noscript
+   handling in base layout). */
+.nav-toggle {
+  display: none;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  background: transparent;
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+@media (max-width: 63.9375rem) {
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--color-surface-1);
+    border-bottom: 1px solid var(--color-surface-border);
+    padding: var(--space-md) var(--content-padding-inline);
+  }
+
+  .site-nav[data-expanded="false"] {
+    display: none;
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+  }
+}
+
+/* Site footer */
+.site-footer {
+  border-top: 1px solid var(--color-surface-border);
+  background: var(--color-surface-1);
+  padding-block: var(--space-2xl);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+
+.site-footer h3 {
+  font-size: var(--font-size-h4);
+  color: var(--color-text-primary);
+}
+
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer li + li {
+  margin-top: var(--space-2xs);
+}
+
+.site-footer a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__legal {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-surface-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: space-between;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+/* Accordion (FAQ) — native <details>/<summary>, no JS required. */
+.accordion {
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--color-surface-border);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-item summary {
+  cursor: pointer;
+  padding: var(--space-md);
+  font-weight: var(--font-weight-medium);
+  list-style: none;
+  min-height: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-item summary::after {
+  content: "+";
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+
+.accordion-item[open] summary::after {
+  content: "\2212";
+}
+
+.accordion-item .accordion-body {
+  padding: 0 var(--space-md) var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+/* Hero CTA row */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Stat callout card (Charity-style pillar callout). */
+.stat-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.stat-card__row + .stat-card__row {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-surface-border);
+}
+
+.stat-card__value {
+  font-size: var(--font-size-h3);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-bold);
+}
+
+.stat-card__label {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
