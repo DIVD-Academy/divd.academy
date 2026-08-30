@@ -1,0 +1,18 @@
+{
+  "name": "DIVD Academy",
+  "short_name": "DIVD Academy",
+  "description": "Learn ethical hacking, cybersecurity and IT skills, then grow into real-world practice through DIVD.Works.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "en",
+  "background_color": "#080808",
+  "theme_color": "#1D1D1B",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
