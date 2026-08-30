@@ -1,0 +1,184 @@
+/*
+  DIVD Academy base styles and layout primitives (issue #13).
+  Semantic HTML + minimal CSS; no framework.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-surface-0);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Reflow at 320px and 200% text zoom without loss of content. */
+html {
+  overflow-x: hidden;
+}
+
+/* Skip link: visible on focus, first focusable element on every page. */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-sm);
+  z-index: 1000;
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: top var(--motion-duration-fast) var(--motion-ease);
+}
+
+.skip-link:focus-visible {
+  top: var(--space-sm);
+}
+
+/* Visible focus states everywhere (WCAG 2.2 AA). */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+a {
+  color: var(--color-text-link);
+}
+
+a:hover {
+  color: var(--color-text-link-hover);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-display);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+p {
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+/* Layout primitives */
+.container {
+  width: 100%;
+  max-width: var(--content-width-default);
+  margin-inline: auto;
+  padding-inline: var(--content-padding-inline);
+}
+
+.container--narrow {
+  max-width: var(--content-width-narrow);
+}
+
+.container--wide {
+  max-width: var(--content-width-wide);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack > * + * {
+  margin-top: var(--space-md);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.section {
+  padding-block: var(--space-2xl);
+}
+
+.section--tight {
+  padding-block: var(--space-xl);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--font-size-eyebrow);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reduced-motion-safe scroll behaviour by default. */
+html {
+  scroll-behavior: smooth;
+}

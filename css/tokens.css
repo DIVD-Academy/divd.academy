@@ -1,0 +1,122 @@
+/*
+  DIVD Academy design tokens
+  Implements issue #12: brand, surface, text, border, status and focus colors,
+  spacing, type scale, content widths, radii, shadows and motion tokens.
+
+  Brand colors are fixed by repository policy:
+    - Academy yellow accent: #F5E716
+    - Logo/ink black: #1D1D1B
+  Base surfaces follow the suggested dark scale (#080808 / #0F0F0F / #161616),
+  matching the calmer editorial tone of DIVD.Charity rather than the higher
+  contrast of DIVD.Works, while keeping the Academy's own accent and logo.
+*/
+
+:root {
+  /* Brand */
+  --color-accent: #F5E716;
+  --color-accent-ink: #1D1D1B; /* text/icons placed on top of the accent */
+  --color-ink: #1D1D1B;
+
+  /* Surfaces (darkest to lightest) */
+  --color-surface-0: #080808;
+  --color-surface-1: #0F0F0F;
+  --color-surface-2: #161616;
+  --color-surface-raised: #1D1D1D;
+  --color-surface-border: #2E2E2E;
+
+  /* Text */
+  --color-text-primary: #F5F5F0;
+  --color-text-secondary: #C7C7C0;
+  --color-text-muted: #9A9A93;
+  --color-text-on-accent: #1D1D1B;
+  --color-text-link: var(--color-accent);
+  --color-text-link-hover: #FFF4A3;
+
+  /* Status */
+  --color-status-success: #59C97A;
+  --color-status-warning: #F5C116;
+  --color-status-danger: #F16B6B;
+  --color-status-info: #6BB9F1;
+
+  /* Focus (WCAG 2.2 AA visible focus) */
+  --focus-ring-color: #FFFFFF;
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  /* Type scale (fluid, clamp-based) */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-family-display: var(--font-family-base);
+
+  --font-size-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --font-size-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --font-size-eyebrow: 0.8125rem;
+  --font-size-h1: clamp(2.25rem, 1.9rem + 2.4vw, 3.75rem);
+  --font-size-h2: clamp(1.75rem, 1.5rem + 1.6vw, 2.5rem);
+  --font-size-h3: clamp(1.375rem, 1.25rem + 0.8vw, 1.75rem);
+  --font-size-h4: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+
+  --line-height-tight: 1.15;
+  --line-height-heading: 1.25;
+  --line-height-body: 1.6;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 800;
+
+  /* Spacing scale */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6rem;
+
+  /* Content widths */
+  --content-width-narrow: 42rem;
+  --content-width-default: 72rem;
+  --content-width-wide: 84rem;
+  --content-padding-inline: clamp(1.25rem, 1rem + 2vw, 3rem);
+
+  /* Radii */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 28px 70px rgba(0, 0, 0, 0.55);
+
+  /* Motion */
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 220ms;
+  --motion-duration-slow: 400ms;
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --header-height: 4.5rem;
+  --touch-target-min: 44px;
+}
+
+/* Respect reduced-motion preference: disable non-essential animation/transition. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-fast: 0ms;
+    --motion-duration-base: 0ms;
+    --motion-duration-slow: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
