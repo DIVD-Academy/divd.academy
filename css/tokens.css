@@ -21,10 +21,8 @@
   --color-surface-0: #080808;
   --color-surface-1: #0F0F0F;
   --color-surface-2: #161616;
-  --color-surface-3: #1C1C1A;
   --color-surface-raised: #1D1D1D;
-  --color-surface-border: rgba(245, 231, 22, 0.22);
-  --color-surface-glow: rgba(245, 231, 22, 0.08);
+  --color-surface-border: #2E2E2E;
 
   /* Text */
   --color-text-primary: #F5F5F0;
