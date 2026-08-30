@@ -103,6 +103,20 @@
       </div>
     </section>
 
+    <section class="section section--tight" aria-labelledby="news-heading">
+      <div class="container">
+        <div class="news-card" data-rss="https://divdacademy.substack.com/feed">
+          <div class="news-card__header">
+            <p class="eyebrow">Nieuws</p>
+            <a class="news-card__link" href="https://divdacademy.substack.com/" target="_blank" rel="noreferrer">Lees alle posts</a>
+          </div>
+          <div class="news-grid" aria-live="polite">
+            <div class="news-status">Nieuws wordt geladen...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--tight" aria-labelledby="progression-heading">
       <div class="container container--narrow stack">
         <h2 id="progression-heading">Van leren naar doen</h2>
@@ -193,6 +207,114 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script>
+    (function () {
+      var feedProxy = "https://api.rss2json.com/v1/api.json?rss_url=";
+
+      function formatDate(value) {
+        var date = new Date(value);
+        if (Number.isNaN(date.getTime())) {
+          return "";
+        }
+
+        return new Intl.DateTimeFormat("nl", {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }).format(date);
+      }
+
+     function stripHtml(value) {
+       return String(value || "")
+         .replace(/<[^>]*>/g, " ")
+         .replace(/&nbsp;/gi, " ")
+         .replace(/\s+/g, " ")
+         .trim();
+      }
+
+     function showStatus(card, message) {
+       var grid = card.querySelector(".news-grid");
+       if (!grid) return;
+       grid.innerHTML = '<div class="news-status">' + message + '</div>';
+     }
+
+     function renderArticle(item) {
+       var article = document.createElement("article");
+       article.className = "news-item";
+
+       var meta = document.createElement("span");
+       meta.className = "news-item__meta";
+       meta.textContent = "Laatste";
+
+       var title = document.createElement("h3");
+       var titleLink = document.createElement("a");
+       titleLink.href = item.link;
+       titleLink.target = "_blank";
+       titleLink.rel = "noreferrer";
+       titleLink.textContent = item.title;
+       title.appendChild(titleLink);
+
+       var description = document.createElement("p");
+       description.className = "news-item__description";
+       description.textContent = stripHtml(item.description || item.content || "").slice(0, 170);
+       if (description.textContent.length === 170) {
+         description.textContent += "…";
+       }
+
+       var date = document.createElement("time");
+       date.className = "news-item__date";
+       date.dateTime = item.pubDate;
+       date.textContent = formatDate(item.pubDate);
+
+       article.appendChild(meta);
+       article.appendChild(title);
+       article.appendChild(description);
+       article.appendChild(date);
+       return article;
+     }
+
+     function loadFeed(card) {
+       var feed = card.dataset.rss;
+       var grid = card.querySelector(".news-grid");
+       if (!feed || !grid) {
+         showStatus(card, "Geen feed geconfigureerd");
+         return;
+       }
+
+       fetch(feedProxy + encodeURIComponent(feed))
+         .then(function (response) {
+           if (!response.ok) {
+             throw new Error("Feed request failed: " + response.status);
+           }
+           return response.json();
+         })
+         .then(function (data) {
+           var items = Array.isArray(data.items) ? data.items.slice(0, 3) : [];
+           if (!items.length) {
+             throw new Error("Feed heeft geen items");
+           }
+
+           grid.innerHTML = "";
+           items.forEach(function (item) {
+             if (item && item.title && item.link) {
+               grid.appendChild(renderArticle(item));
+             }
+           });
+
+           if (!grid.children.length) {
+             throw new Error("Feed heeft geen geldige items");
+           }
+         })
+         .catch(function () {
+           showStatus(card, "Nieuws niet beschikbaar");
+         });
+     }
+
+     document.querySelectorAll("[data-rss]").forEach(function (card) {
+       loadFeed(card);
+     });
+   })();
+  </script>
 </body>
 </html>
 
